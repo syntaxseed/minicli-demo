@@ -2,10 +2,20 @@
 
 namespace App\Command\Hello;
 
+use Minicli\App;
 use Minicli\Command\CommandController;
 
 class DefaultController extends CommandController
 {
+    /** @var  array */
+    protected $command_map = [];
+
+    public function boot(App $app)
+    {
+        parent::boot($app);
+        $this->command_map = $app->command_registry->getCommandMap();
+    }
+
     public function handle()
     {
         if (!$this->handleFlags()) {

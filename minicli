@@ -11,19 +11,24 @@ use Minicli\App;
 use Minicli\Command\CommandCall;
 
 $app = new App([
-    'theme' => 'unicorn',
-    'app_path' => __DIR__ . '/app/Command'
+    'app_path' => __DIR__ . '/app/Command',
+    'theme' => 'unicorn'
 ]);
 
-$app->setSignature('./minicli about');
+/*
+$output = new \Minicli\Output\OutputHandler();
+$output->registerFilter(new \Minicli\Output\Filter\ColorOutputFilter(new Minicli\Output\Theme\UnicornTheme()));
+$app->setOutputHandler($output);
+*/
 
 // Example basic command registered via a closure:
+$app->setSignature('./minicli about');
 $app->registerCommand('about', function(CommandCall $input) use ($app) {
     $app->getPrinter()->display(
-        $app->getPrinter()->format("PHP CLI Application Demo", "alt") .
+        $app->getPrinter()->filterOutput("PHP CLI Application Demo", "alt") .
         "\nSherri Wheeler @SyntaxSeed." .
         "\nCreated with github.com/minicli/minicli." .
-        $app->getPrinter()->format("\nUse the 'help' command to see a list of available commands.", "italic")
+        $app->getPrinter()->filterOutput("\nUse the 'help' command to see a list of available commands.", "italic")
     );
 });
 
