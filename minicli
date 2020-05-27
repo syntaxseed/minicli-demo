@@ -12,14 +12,10 @@ use Minicli\Command\CommandCall;
 
 $app = new App([
     'app_path' => __DIR__ . '/app/Command',
-    'theme' => 'unicorn'
+    'theme' => 'App\Theme\Blue',
+    'debug' => false
+    //'theme' => '\Unicorn'
 ]);
-
-/*
-$output = new \Minicli\Output\OutputHandler();
-$output->registerFilter(new \Minicli\Output\Filter\ColorOutputFilter(new Minicli\Output\Theme\UnicornTheme()));
-$app->setOutputHandler($output);
-*/
 
 // Example basic command registered via a closure:
 $app->setSignature('./minicli about');
@@ -31,5 +27,6 @@ $app->registerCommand('about', function(CommandCall $input) use ($app) {
         $app->getPrinter()->filterOutput("\nUse the 'help' command to see a list of available commands.", "italic")
     );
 });
+
 
 $app->runCommand($argv);
