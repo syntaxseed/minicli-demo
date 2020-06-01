@@ -12,8 +12,8 @@ use Minicli\Command\CommandCall;
 
 $app = new App([
     'app_path' => __DIR__ . '/app/Command',
-    'theme' => 'App\Theme\Blue',
-    'debug' => false
+    'debug' => false,
+    'theme' => 'App\Theme\Blue'
     //'theme' => '\Unicorn'
 ]);
 
